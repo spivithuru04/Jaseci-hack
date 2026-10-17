@@ -5,11 +5,6 @@ description = "Empty Jac project - start from scratch"
 entry-point = "main.jac"
 kind = "web-app"
 
-[byllm]
-[byllm.model]
-default_model = "${LLM_MODEL:-gpt-4o-mini}"
-api_key = "${OPENAI_API_KEY:-}"
-
 
 [jac-shadcn]
 style = "lyra"
@@ -20,6 +15,7 @@ radius = "small"
 menuAccent = "subtle"
 menuColor = "default"
 [dependencies]
+google-genai = "~=2.31"
 [dependencies.npm]
 "@fontsource-variable/geist" = "*"
 react = "^18.2.0"
