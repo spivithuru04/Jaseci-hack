@@ -1,7 +1,14 @@
-import from "@jac/runtime" { Router, Routes, Route }
+import from "@jac/runtime" { Router, Routes, Route, Link }
 import from .components.BuildWiseDashboard { BuildWiseDashboard }
+import from .components.Companies { Companies }
+import from .components.Workers { Workers }
+import from .components.MaterialPriceManager { MaterialPriceManager }
 import ".styles.global.css";
 
+def:pub AppFrame(children: any = None) -> JsxElement {
+    return <div className="min-h-screen bg-muted/40"><nav className="border-b bg-background"><div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-4 py-3 sm:px-6"><Link to="/" className="font-semibold tracking-tight">BuildWise</Link><div className="flex flex-wrap gap-2 text-sm"><Link to="/" className="rounded-md px-3 py-2 hover:bg-muted">Project</Link><Link to="/companies" className="rounded-md px-3 py-2 hover:bg-muted">Companies</Link><Link to="/workers" className="rounded-md px-3 py-2 hover:bg-muted">Workers</Link><Link to="/materials" className="rounded-md px-3 py-2 hover:bg-muted">Material prices</Link></div></div></nav>{children}</div>;
+}
+
 def:pub app() -> JsxElement {
-    return <Router><Routes><Route path="/" element={<BuildWiseDashboard />} /></Routes></Router>;
+    return <Router><Routes><Route path="/" element={<AppFrame><BuildWiseDashboard /></AppFrame>} /><Route path="/companies" element={<AppFrame><Companies /></AppFrame>} /><Route path="/workers" element={<AppFrame><Workers /></AppFrame>} /><Route path="/materials" element={<AppFrame><MaterialPriceManager /></AppFrame>} /></Routes></Router>;
 }
